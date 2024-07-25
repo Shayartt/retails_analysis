@@ -1,0 +1,99 @@
+version: 2
+
+sources:
+  - name: pg_sample_data
+    description: "Aggregation from sales pipelines"
+    database: postgres  
+    schema: public  
+    tables:
+      - name: sales_payment_line
+        description: 'statisticts_per_city_payment_line_dim'
+        columns:
+          - name: city
+            description: "The city where the sales occurred."
+            tests:
+              - not_null
+          - name: payment
+            description: "The payment method used for the sales."
+            tests:
+              - not_null
+          - name: product_line
+            description: "The product line of the items sold."
+            tests:
+              - not_null
+          - name: total_sales
+            description: "The total sales amount."
+            tests:
+              - not_null
+          - name: total_number_of_orders
+            description: "The total number of orders."
+            tests:
+              - not_null
+          - name: average_rating
+            description: "The average rating of the products sold."
+            tests:
+              - not_null
+          - name: max_rating
+            description: "The maximum rating of the products sold."
+            tests:
+              - not_null
+          - name: min_rating
+            description: "The minimum rating of the products sold."
+            tests:
+              - not_null
+      - name : sales_line_quality_gender
+        description: 'A table containing sales data across different cities, payment methods, and product lines.'
+        columns:
+          - name: city
+            description: "The city where the sales occurred."
+            tests:
+              - not_null
+          - name: payment
+            description: "The payment method used for the sales."
+            tests:
+              - not_null
+          - name: product_line
+            description: "The product line of the items sold."
+            tests:
+              - not_null
+          - name: total_sales
+            description: "The total sales amount."
+            tests:
+              - not_null
+          - name: total_number_of_orders
+            description: "The total number of orders."
+            tests:
+              - not_null
+          - name: average_rating
+            description: "The average rating of the products sold."
+            tests:
+              - not_null
+          - name: max_rating
+            description: "The maximum rating of the products sold."
+            tests:
+              - not_null
+          - name: min_rating
+            description: "The minimum rating of the products sold."
+            tests:
+              - not_null
+
+      - name: statistics_per_customer_gender_dim
+        description: 'statistics_per_customer_gender_dim'
+        columns:
+          - name: customer_type
+            description: "Type of customer (Member or Normal)"
+            tests:
+              - column_is_not_empty:
+                  column_name: customer_type
+                  severity: warn
+              
+          - name: gender
+            description: "Gender of the customer"
+          - name: total_sales
+            description: "Total sales amount"
+          - name: total_gross_income
+            description: "Total gross income"
+          - name: average_normalized_amount
+            description: "Average normalized amount"
+          - name: total_number_of_orders
+            description: "Total number of orders"
